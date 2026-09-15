@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LEC 2026 招新页（Next.js 版）
 
-## Getting Started
+由 lec-recruit-2026（React + TypeScript + Vite 单页应用）1:1 迁移到 Next.js（App Router）的版本，页面内容、视觉与交互保持一致。
 
-First, run the development server:
+技术栈：Next.js 16 + React 19 + TypeScript + Tailwind CSS v4 + GSAP + Lenis
+
+现已完成静态“团队动态”与“往届成员”
+
+## 与 Vite 版的主要差异（仅入口层）
+
+- 单页入口改为 `src/app/page.tsx`，SEO meta / og / Bing、百度站点验证移至 `src/app/layout.tsx` 的 `metadata`
+- 字体（Google Fonts + MiSans CDN）`<link>` 保留在 `layout.tsx` 中
+- 全部交互组件标注 `'use client'`；`GridMotion` 因强依赖 `window`，改为挂载后渲染
+- 二维码路径由 `import.meta.env.BASE_URL` 改为 `/qr.png`
+
+## 开发
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm dev      # http://localhost:3000
+pnpm build    # 生产构建（/ 为完全静态预渲染）
+pnpm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+部署在 vercel：https://lec-page-2026.ziroo.cn/
